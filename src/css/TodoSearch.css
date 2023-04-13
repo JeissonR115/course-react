@@ -1,0 +1,25 @@
+.search-container{
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+}
+.search-container label span{
+    color: var(--blue);
+    font-weight: bold;
+}
+.search-container .TodoSearch{
+    margin: 0 10px;
+    padding: 0 10px;
+    width: calc(75% - 10px);
+    background-color: var(--white);
+    border-radius: 5px;
+    border: none;
+    color: var(--gray);
+}
+.search-container .TodoSearch::placeholder{
+    font-weight: 300;
+    color: var(--light-gray);
+}
+.TodoSearch:focus{
+outline-color: var(--blue);
+}
