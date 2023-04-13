@@ -1,33 +1,26 @@
 import React from "react";
 import '../css/TodoItem.css'
 function TodoItem(props) {
-    const onCompleted = () => {
-        if(!props.completed){
-            alert("completaste la tarea: "+ props.text);
-            return true;
-        }
-        else{
-            alert("No completaste la tarea: "+ props.text);
-            return false;
-        }
-    }
-    const onDelete = () =>{
+    const onDelete = () => {
         alert("borraste el ToDo")
     }
     return (
         <li className="TodoItem" id={props.id} >
-            <samp 
-                className={`material-symbols-outlined ${props.completed ? "checkBox-checked":""} `} 
+            <samp
+                className={`material-symbols-outlined ${props.completed ? "checkBox-checked" : ""} `}
                 id={"todoItem-checkBox" + props.id}
-                onClick={onCompleted}
-                >
-                done
+                onClick={props.onComplete}
+            >
+                {props.completed ? "check_circle" : "radio_button_unchecked"}
             </samp>
-            <p className={props.completed ? "todoItem-checked":""}>{props.text}</p>
-            <button 
+            <p
+                className={props.completed ? "todoItem-checked" : "todoItem-unchecked"}
+                onClick={props.onComplete}
+            >{props.text}</p>
+            <button
                 className="close-button"
                 onClick={onDelete}
-                >
+            >
                 <span className="material-symbols-outlined">
                     close
                 </span>

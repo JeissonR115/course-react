@@ -23,3 +23,7 @@
 .TodoItem .close-button:active{
     color: var(--red);
 }
+.TodoItem p {
+    width: 100%;
+    text-align: center;
+}

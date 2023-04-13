@@ -1,8 +1,9 @@
 import React from "react";
 import '../css/TodoSearch.css'
-function TodoSearch() {
+function TodoSearch({searchValue,setSearchValue}) {
     const onSearchValueChange = (event) => {
         console.log(event.target.value);
+        setSearchValue(event.target.value)
     }
 
     return (
@@ -19,6 +20,7 @@ function TodoSearch() {
                 placeholder="search"
                 onChange={onSearchValueChange}
             />
+            <p>{searchValue}</p>
         </div>
     );
 
