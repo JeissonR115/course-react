@@ -1,13 +1,10 @@
 import React from "react";
 import '../css/CreateTodoButton.css'
-function CreateTodoButton() {
-    const onClickButton = (msg) => {
-        alert(msg)
-    }
+function CreateTodoButton(props) {
     return (
         <button
             className="CreateTodoButton"
-            onClick={() => onClickButton('hols')}    
+            onClick={props.onAdd}    
         >
             <span className="material-symbols-outlined">
                 add

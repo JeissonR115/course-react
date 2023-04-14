@@ -1,9 +1,6 @@
 import React from "react";
 import '../css/TodoItem.css'
 function TodoItem(props) {
-    const onDelete = () => {
-        alert("borraste el ToDo")
-    }
     return (
         <li className="TodoItem" id={props.id} >
             <samp
@@ -19,9 +16,11 @@ function TodoItem(props) {
             >{props.text}</p>
             <button
                 className="close-button"
-                onClick={onDelete}
+                onClick={props.onRemove}
             >
-                <span className="material-symbols-outlined">
+                <span className="material-symbols-outlined"
+                onClick={props.removeTodo}
+                >
                     close
                 </span>
             </button>
