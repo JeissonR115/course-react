@@ -1,51 +1,47 @@
 //import './App.css';
 import React from "react";
-import { TodoCounter } from "./js/TodoCounter";
-import { TodoSearch } from "./js/TodoSearch";
-import { TodoList } from "./js/TodoList";
-import { TodoItem } from "./js/TodoItem";
-import { CreateTodoButton } from "./js/CreateTodoButton";
+import { TodoCounter } from "../TodoCounter";
+import { TodoSearch } from "../TodoSearch";
+import { TodoList } from "../TodoList";
+import { TodoItem } from "../TodoItem";
+import { CreateTodoButton } from "../CreateTodoButton";
 
 
 function App() {
+
   const [todos, setTodos] = React.useState([]);
   const [searchValue, setSearchValue] = React.useState('');
+
   const totalTodos = todos.length;
   const completedTodos = todos.filter(todo => todo.completed).length;
   
-  let searchedTodos = [];
-  if (searchValue.length >= 0) {
-    searchedTodos = todos.filter(todo => {
-      const todoText = todo.text.toLowerCase()
-      const searchText = searchValue.toLowerCase()
-      return todoText.includes(searchText)
-    })
-  } else {
-    searchedTodos = todos;
-  }
+  const searchTodos = (list,text) =>  list.length >= 0 ? todos.filter(todo => todo.text.toLowerCase().includes(text.toLowerCase())): todos
+  let searchedTodos = searchTodos(searchTodos,searchValue);
+  
   let completeTodo = (id) => {
-    const todoIndex = todos.findIndex(todo => todo.id === id);
     const newTodos = [...todos];
+    const todoIndex = todos.findIndex(todo => todo.id === id);
     newTodos[todoIndex].completed = !todos[todoIndex].completed;
     setTodos(newTodos)
   }
-  const addTodo = () => {
-    const newTodos = [...todos];
-    const newId = todos.length === 0 ? 0 : todos[ todos .length -1].id + 1;
-    newTodos.push({
 
+  const addTodo = (text) => {
+    const newTodos = [...todos];
+    const newId = todos.length === 0 ? 0 : todos[todos.length - 1].id + 1;
+    newTodos.push({
       id: newId,
-      text: prompt("tarea"),
+      text: text,
       completed: false
     })
     setTodos(newTodos)
   }
   const removeTodo = (id) => {
-    const todoIndex = todos.findIndex(todo => todo.id === id);
     const newTodos = [...todos];
+    const todoIndex = todos.findIndex(todo => todo.id === id);
     newTodos.splice(todoIndex, 1)
     setTodos(newTodos)
   }
+
   return (
     <React.Fragment>
       <div className="todo-container" id="left-container" >
@@ -65,12 +61,11 @@ function App() {
             />
           ))}
         </TodoList>
-        <CreateTodoButton onAdd={addTodo} />
+        <CreateTodoButton onAdd={() => addTodo(prompt("escrive tu nueva tarea"))} />
       </div>
 
 
     </React.Fragment>
-
   );
 }
 
